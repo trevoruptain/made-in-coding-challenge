@@ -1,0 +1,28 @@
+{
+    "manifest_version": 2,
+    "name": "Made Inn Coding Challenge",
+    "version": "0.1",
+    "browser_action": {
+        "default_popup": "popup.html"
+    },
+    "permissions": [
+        "activeTab",
+        "declarativeContent",
+        "storage"
+    ],
+    "content_scripts": [
+        {
+            "matches": [
+                "http://*/*",
+                "https://*/*",
+                "https://*.madeincookware.com/*",
+                "http://*.madeincookware.com/*",
+                "http://*.www.madeincookware.com/*",
+                "https://*.www.madeincookware.com/*"
+            ],
+            "js": [
+                "content.js"
+            ]
+        }
+    ]
+}
