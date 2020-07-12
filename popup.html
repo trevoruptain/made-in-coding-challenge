@@ -9,7 +9,37 @@
 
 <body>
     <div id="menu">
-        <!-- Controls go here -->
+        <header><h1>product <strong>engraver</strong></h1></header>
+        <nav>
+            <ul>
+                <li data-variation="1"></li>
+                <li data-variation="2"></li>
+                <li data-variation="3"></li>
+            </ul>
+        </nav>
+        <main>
+            <section id="global">
+                <h2>Global Settings</h2>
+                <label>Color
+                    <input type="text" name="color" value="#000000">
+                </label>
+                <select name="font" id="font">
+                    <option value="mark-pro" selected>Mark Pro</option>
+                    <option value="mark-pro-bold">Mark Pro Bold</option>
+                    <option value="mark-pro-bold Italic">Mark Pro Bold Italic</option>
+                    <option value="mark-pro-italic">Mark Pro Italic</option>
+                    <option value="mark-pro-light">Mark Pro Light</option>
+                    <option value="mark-pro-light-italic">Mark Pro Light Italic</option>
+                    <option value="mark-pro-medium">Mark Pro Medium</option>
+                    <option value="mark-pro-medium-italic">Mark Pro Medium Italic</option>
+                </select>
+            </section>
+            <section id="variation" class="hidden">
+                <h2>Edit Variation</h2>
+                <div id="variation-content"></div>
+            </section>
+            <section id="export" class="hidden"></section>
+        </main>
     </div>
 </body>
 
