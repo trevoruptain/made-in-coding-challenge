@@ -68,10 +68,6 @@ li:hover {
     background-color: #dedede;
 }
 
-.selected-li {
-    border: solid 1px #0f0f0f;
-}
-
 .hidden {
     display: none !important;
 }

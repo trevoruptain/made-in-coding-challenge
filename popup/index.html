@@ -5,6 +5,9 @@
     <meta charset="utf-8">
     <title>Product Engraver</title>
     <link rel="stylesheet" href="./popup.css">
+    <script type="text/javascript" src="../generator/Global.js"></script>
+    <script type="text/javascript" src="../generator/Variation.js"></script>
+    <script type="text/javascript" src="../generator/Text.js"></script>
     <script type="text/javascript" src="popup.js"></script>
 </head>
 
@@ -24,12 +27,14 @@
         </nav>
         <main>
             <section id="product-1" class="hidden">
-                <h2>Variation 1</h2>
+                <h2>Pomme Red</h2>
                 <select name="image">
                     <option value="image-1" selected>Image 1</option>
                     <option value="image-2">Image 2</option>
                     <option value="image-3">Image 3</option>
                 </select>
+                <br />
+                <label for="include">Include?</label><input type="checkbox" id="include">
                 <h4>Color</h4>
                 <input type="color" name="variation-color-from" value="#000000"> to <input type="color" name="variation-color-from" value="#000000">
                 <h4>Center Position</h4>
@@ -46,12 +51,14 @@
                 <input type="number" min="-360" max="360" step="0.2" value="0" />%
             </section>
             <section id="product-2" class="hidden">
-                <h2>Variation 2</h2>
+                <h2>Truffle Black</h2>
                 <select name="image">
                     <option value="image-1" selected>Image 1</option>
                     <option value="image-2">Image 2</option>
                     <option value="image-3">Image 3</option>
                 </select>
+                <br />
+                <label for="include">Include?</label><input type="checkbox" id="include">
                 <h4>Color</h4>
                 <input type="color" name="variation-color-from" value="#000000"> to <input type="color" name="variation-color-from" value="#000000">
                 <h4>Center Position</h4>
@@ -68,12 +75,14 @@
                 <input type="number" min="-360" max="360" step="0.2" value="0" />%
             </section>
             <section id="product-3" class="hidden">
-                <h2>Variation 3</h2>
+                <h2>Beaune Gray</h2>
                 <select name="image">
                     <option value="image-1" selected>Image 1</option>
                     <option value="image-2">Image 2</option>
                     <option value="image-3">Image 3</option>
                 </select>
+                <br />
+                <label for="include">Include?</label><input type="checkbox" id="include">
                 <h4>Color</h4>
                 <input type="color" name="variation-color-from" value="#000000"> to <input type="color" name="variation-color-from" value="#000000">
                 <h4>Center Position</h4>
@@ -93,8 +102,6 @@
                 <h2>Global Settings</h2>
                 <label for="default-text">Default Text</label>
                 <input type="text" id="default-text" placeholder="clark griswold" name="default-text">
-                <label for="color">Color</label>
-                <input type="color" id="color" name="color" value="#000000">
                 <label for="font">Font</label>
                 <select name="font" id="font">
                     <option value="mark-pro" selected>Mark Pro</option>
@@ -106,6 +113,13 @@
                     <option value="mark-pro-medium">Mark Pro Medium</option>
                     <option value="mark-pro-medium-italic">Mark Pro Medium Italic</option>
                 </select>
+                <br />
+                <label for="allow-custom">Allow Custom</label>
+                <input type="radio" id="allow-custom" name="text-force" value="allow-custom" checked>
+                <label for="force-lowercase">force lowercase</label>
+                <input type="radio" id="force-lowercase" name="text-force" value="force-lowercase">
+                <label for="force-uppercase">FORCE UPPERCASE</label>
+                <input type="radio" id="force-uppercase" name="text-force" value="force-uppercase">
             </section>
             <section id="export" class="hidden">
                 <h2>Export Engraver</h2>
