@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <title>Product Engraver</title>
+    <link rel="stylesheet" href="./popup.css">
     <script type="text/javascript" src="popup.js"></script>
 </head>
 
@@ -12,17 +13,19 @@
         <header><h1>product <strong>engraver</strong></h1></header>
         <nav>
             <ul>
-                <li data-variation="1"></li>
-                <li data-variation="2"></li>
-                <li data-variation="3"></li>
+                <li data-variation="1" class="red"></li>
+                <li data-variation="2" class="black"></li>
+                <li data-variation="3" class="grey"></li>
             </ul>
         </nav>
         <main>
+            <h2>Global Settings</h2>
             <section id="global">
-                <h2>Global Settings</h2>
-                <label>Color
-                    <input type="text" name="color" value="#000000">
-                </label>
+                <label for="default-text">Default Text</label>
+                <input type="text" id="default-text" name="default-text" value="clark griswold">
+                <label for="color">Color</label>
+                <input type="color" id="color" name="color" value="#000000">
+                <label for="font">Font</label>
                 <select name="font" id="font">
                     <option value="mark-pro" selected>Mark Pro</option>
                     <option value="mark-pro-bold">Mark Pro Bold</option>
