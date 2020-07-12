@@ -13,20 +13,29 @@
         <header><h1>product <strong>engraver</strong></h1></header>
         <nav>
             <ul>
-                <li data-variation="1" class="red"></li>
-                <li data-variation="2" class="black"></li>
-                <li data-variation="3" class="grey"></li>
+                <li data-menu="product-1" class="red"></li>
+                <li data-menu="product-2" class="black"></li>
+                <li data-menu="product-3" class="grey"></li>
             </ul>
             <div>
-                <img src="./images/settings.png" data-variation="settings" alt="Settings" />
-                <img src="./images/export.png" data-variation="export" alt="Export JavaScript" />
+                <img data-menu="settings" src="./images/settings.png" alt="Settings" />
+                <img data-menu="export" src="./images/export.png" alt="Export JavaScript" />
             </div>
         </nav>
         <main>
-            <h2>Global Settings</h2>
-            <section id="global">
+            <section id="product-1" class="hidden">
+                <h2>Edit Variation 1</h2>
+            </section>
+            <section id="product-2" class="hidden">
+                <h2>Edit Variation 2</h2>
+            </section>
+            <section id="product-3" class="hidden">
+                <h2>Edit Variation 3</h2>
+            </section>
+            <section id="settings" class="active">
+                <h2>Global Settings</h2>
                 <label for="default-text">Default Text</label>
-                <input type="text" id="default-text" name="default-text" value="clark griswold">
+                <input type="text" id="default-text" placeholder="clark griswold" name="default-text">
                 <label for="color">Color</label>
                 <input type="color" id="color" name="color" value="#000000">
                 <label for="font">Font</label>
@@ -41,9 +50,11 @@
                     <option value="mark-pro-medium-italic">Mark Pro Medium Italic</option>
                 </select>
             </section>
-            <section id="variation" class="hidden">
-                <h2>Edit Variation</h2>
-                <div id="variation-content"></div>
+            <section id="export" class="hidden">
+                <h2>Export Engraver</h2>
+                <label for="minify" class="switch">Minify?</label>
+                <input type="checkbox" id="minify">
+                <div id='download-button'>Download Files</div>
             </section>
             <section id="export" class="hidden"></section>
         </main>
