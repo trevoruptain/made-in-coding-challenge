@@ -22,7 +22,10 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
             transformText(request.payload);
             break;
         case "style":
-            // applyStyle();
+            applyStyle(request.payload);
+            break;
+        case "center":
+            centerText(request.payload);
             break;
         case "click":
             handleClick(request.payload);
@@ -34,19 +37,21 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
 // Render initial text nodes
 const setup = global => {
+    window.global = global;
+
     let width;
     let height;
     let ownWidth;
     let ownHeight;
 
-    global.variations.forEach(variation => {
+    global.variations.forEach((variation, ord) => {
         const variationImages = document.querySelectorAll(`[data-id="${variation.id}"]`);
 
         for (let i = 0; i < variationImages.length; i++) {
             const currentImage = variationImages[i];
             const editableText = document.createElement('span');
             editableText.innerText = global.defaultText;
-            editableText.setAttribute("id", `text-${variation.id}-${i + 1}`);
+            editableText.setAttribute("id", `text-${ord + 1}-${i + 1}`);
             editableText.setAttribute("class", "editable-text");
             currentImage.appendChild(editableText);
 
@@ -54,9 +59,9 @@ const setup = global => {
             if (height === undefined) height = currentImage.children[0].height;
             if (ownWidth === undefined) ownWidth = editableText.offsetWidth;
             if (ownHeight === undefined) ownHeight = editableText.offsetHeight;
-            const initialX = width / 2 - ownWidth / 2;
-            const initialY = -(height / 2 + ownHeight / 2);
-            editableText.setAttribute("style", `font-size: 2vw; font-family: "mark-pro-normal"; text-transform: none; left: ${initialX}px; top: ${initialY}px;`);
+            const initialX = width * 0.5 - ownWidth * 0.5;
+            const initialY = -(height * 0.5 + ownHeight * 0.5);
+            editableText.setAttribute("style", `font-size: 2vw !important; font-family: "mark-pro-normal"; transform: skew(0deg, 0deg) rotate(0deg); text-transform: none; display: inline-block; left: ${initialX}px; top: ${initialY}px; background: -webkit-linear-gradient(left, #000000, #000000); -webkit-background-clip: text; -webkit-text-fill-color: transparent;`);
         }
     });
 };
@@ -88,6 +93,41 @@ const transformText = ({oldTransform, newTransform}) => {
         const styleString = currentNode.getAttribute("style");
         currentNode.setAttribute("style", styleString.replace(oldTransform, newTransform));
     }
+};
+
+const applyStyle = ({productOrd, imageOrd, key, val}) => {
+    const id = `text-${productOrd}-${imageOrd}`;
+    const target = document.getElementById(id);
+    const currentStyles = target.getAttribute("style");
+    const startIdx = currentStyles.search(key);
+    let endIdx;
+
+    for (let i = startIdx + key.length; i < currentStyles.length; i++) {
+        if (currentStyles[i] === ";") {
+            endIdx = i;
+            break;
+        }
+    }
+
+    const newStyle = currentStyles.slice(0, startIdx + key.length + 2) + val + currentStyles.slice(endIdx);
+    target.setAttribute("style", newStyle);
+};
+
+const centerText = ({productOrd, imageOrd, key, multiplier}) => {
+    const id = `text-${productOrd}-${imageOrd}`;
+    const target = document.getElementById(id);
+
+    const image = document.getElementsByClassName('js-variant-slider-img')[0];
+
+    let val;
+
+    if (key === "left") {
+        val = image.width * multiplier - target.offsetWidth * multiplier;
+    } else {
+        val = -(image.height * multiplier + target.offsetHeight * multiplier);
+    }
+
+    applyStyle({productOrd, imageOrd, key, val: `${val}px`});
 };
 
 const handleClick = data => {

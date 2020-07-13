@@ -79,13 +79,28 @@ const bindPopupMenu = () => {
 
     Array.from(imageSelection).forEach(selector => {
         selector.addEventListener("change", e => {
+            // Toggle text node edit menu
+            const siblings = e.target.parentNode.children;
+
+            Array.from(siblings).forEach(sibling => {
+                if (sibling.tagName === "DIV" && sibling.id !== "radio") {
+                    sibling.classList.add("hidden");
+                }
+            });
+
+            // Click corresponding image on page
             const variantOrd = e.target.dataset.ord;
             let imageOrd;
 
-            debugger;
-
             for (let i = 0; i < 3; i++) {
-                if (e.target.children[i].selected) imageOrd = i + 1;
+                const option = e.target.children[i];
+                if (option.selected) {
+                    imageOrd = i + 1;
+                    
+                    const id = `product-${variantOrd}-image-${imageOrd}`;
+                    const menu = document.getElementById(id);
+                    menu.classList.remove("hidden");
+                }
             }
 
             chrome.tabs.query({active: true, currentWindow: true}, tabs => {
@@ -127,10 +142,128 @@ const bindGlobalSettings = global => {
     });
 };
 
-const bindExport = global => {
+const bindVariationEdit = global => {
+    const includes = document.getElementsByClassName('include');
 
+    Array.from(includes).forEach(checkbox => {
+        const styleObj = {key: 'display'};
+
+        checkbox.addEventListener("click", e => {
+            const dataset = e.target.parentNode.parentNode.dataset;
+            styleObj["productOrd"] = dataset.product
+            styleObj["imageOrd"] = dataset.image;
+
+            if (e.target.checked) {
+                styleObj["val"] = "inline-block";
+            } else {
+                styleObj["val"] = "none";
+            }
+            
+            chrome.tabs.query({active: true, currentWindow: true}, tabs => {
+                chrome.tabs.sendMessage(tabs[0].id, {type: 'style', payload: styleObj});
+            });
+        });
+    });
+
+    const fontSize = document.getElementsByClassName('font-size');
+
+    Array.from(fontSize).forEach(input => {
+        const styleObj = {key: 'font-size'};
+
+        input.addEventListener("click", e => {
+            const dataset = e.target.parentNode.dataset;
+            styleObj["productOrd"] = dataset.product
+            styleObj["imageOrd"] = dataset.image;
+            styleObj["val"] = `${e.target.value}vw !important`;
+            
+            chrome.tabs.query({active: true, currentWindow: true}, tabs => {
+                chrome.tabs.sendMessage(tabs[0].id, {type: 'style', payload: styleObj});
+            });
+        });
+    });
+
+    const color = document.querySelectorAll('input[type="color"]');
+
+    Array.from(color).forEach(input => {
+        const styleObj = {key: 'background'};
+
+        input.addEventListener("change", e => {
+            const dataset = e.target.parentNode.dataset;
+            styleObj["productOrd"] = dataset.product
+            styleObj["imageOrd"] = dataset.image;
+            let from;
+            let to;
+
+            if (e.target.name === "variation-color-from") {
+                from = e.target.value;
+                to = e.target.nextElementSibling.value;
+            } else if (e.target.name === "variation-color-to") {
+                from = e.target.previousElementSibling.value;
+                to = e.target.value;
+            }
+
+            styleObj["val"] = `-webkit-linear-gradient(left, ${from}, ${to})`;
+            
+            chrome.tabs.query({active: true, currentWindow: true}, tabs => {
+                chrome.tabs.sendMessage(tabs[0].id, {type: 'style', payload: styleObj});
+            });
+        });
+    });
+
+    const centerPos = document.getElementsByClassName("center");
+
+    Array.from(centerPos).forEach(input => {
+        input.addEventListener("change", e => {
+            const dataset = e.target.parentNode.dataset;
+            const key = e.target.dataset.dir === "x" ? "left" : "top";
+            const styleObj = {key};
+            styleObj["productOrd"] = dataset.product
+            styleObj["imageOrd"] = dataset.image;
+            styleObj["multiplier"] = e.target.value / 100;
+            
+            chrome.tabs.query({active: true, currentWindow: true}, tabs => {
+                chrome.tabs.sendMessage(tabs[0].id, {type: 'center', payload: styleObj});
+            });
+        });
+    });
+
+    const skew = document.getElementsByClassName("skew");
+
+    Array.from(skew).forEach(input => {
+        input.addEventListener("change", e => {
+            const dataset = e.target.parentNode.dataset;
+            const key = "transform";
+            const styleObj = {key};
+            styleObj["productOrd"] = dataset.product
+            styleObj["imageOrd"] = dataset.image;
+
+            let skewX;
+            let skewY;
+            let rotate;
+
+            if (e.target.dataset.skew === "x") {
+                skewX = e.target.value;
+                skewY = e.target.nextElementSibling.nextElementSibling.value;
+                rotate = e.target.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.value;
+            } else if (e.target.dataset.skew === "y") {
+                skewX = e.target.previousElementSibling.previousElementSibling.value;
+                skewY = e.target.value;
+                rotate = e.target.nextElementSibling.nextElementSibling.value;
+            } else {
+                skewX = e.target.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.value;
+                skewY = e.target.previousElementSibling.previousElementSibling.value;
+                rotate = e.target.value;
+            }
+
+            styleObj["val"] = `skew(${skewX}deg, ${skewY}deg) rotate(${rotate}deg)`;
+            
+            chrome.tabs.query({active: true, currentWindow: true}, tabs => {
+                chrome.tabs.sendMessage(tabs[0].id, {type: 'style', payload: styleObj});
+            });
+        });
+    });
 };
 
-const bindVariationEdit = global => {
+const bindExport = global => {
 
 };
