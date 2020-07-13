@@ -18,7 +18,7 @@ Designers can adjust font, default text, and placement settings then use them to
 * Select 'Load unpacked' and select the local repo directory
 * Visit [this](https://madeincookware.com/products/8-inch-chef-knife) page and click the 'P' icon in the toolbar
 
-## Future Improvements
+## Roadmap
 
 * Migrate from Chrome extension to Shopify app
 * Build out options so the app works for all products
