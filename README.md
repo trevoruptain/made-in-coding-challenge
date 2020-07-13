@@ -13,9 +13,10 @@ Designers can adjust font, default text, and placement settings then use them to
 ## Instructions
 
 * Clone this repo locally
+* Make sure you are using Chrome
 * Visit [chrome://extensions/](chrome://extensions/) and turn on developer mode
 * Select 'Load unpacked' and select the local repo directory
-* Visit [this](https://madeincookware.com/products/8-inch-chef-knife) page
+* Visit [this](https://madeincookware.com/products/8-inch-chef-knife) page in Chrome and click the 'P' icon in the toolbar
 
 ## Future Improvements
 
