@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title>Product Engraver</title>
+    <link rel="stylesheet" href="./popup.css">
+    <script type="text/javascript" src="./generator/Global.js"></script>
+    <script type="text/javascript" src="./generator/Variation.js"></script>
+    <script type="text/javascript" src="./generator/Text.js"></script>
+    <script type="text/javascript" src="./generator/Download.js"></script>
+    <script type="text/javascript" src="popup.js"></script>
+</head>
+
+<body>
+    <div id="menu">
+        <header><h1>product <strong>engraver</strong></h1></header>
+        <nav>
+            <ul>
+                <li data-menu="product-1" class="red"></li>
+                <li data-menu="product-2" class="black"></li>
+                <li data-menu="product-3" class="grey"></li>
+            </ul>
+            <div>
+                <img data-menu="settings" src="./images/settings.png" alt="Settings" />
+                <img data-menu="export" src="./images/export.png" alt="Export JavaScript" />
+            </div>
+        </nav>
+        <main>
+            <section id="product-1" class="hidden">
+                <h2>Pomme Red</h2>
+                <select name="image" data-ord="1">
+                    <option value="image-1" selected>Image 1</option>
+                    <option value="image-2">Image 2</option>
+                    <option value="image-3">Image 3</option>
+                </select>
+                <br />
+                <label>Include?
+                    <input type="checkbox" class="include" checked>
+                </label>
+                <label for="font-size"></label>
+                <input type="number" id="font-size" min="0" max="5" step="0.1" value="2" />vw
+                <h4>Color</h4>
+                <input type="color" name="variation-color-from" value="#000000"> to <input type="color" name="variation-color-from" value="#000000">
+                <h4>Center Position</h4>
+                <label for="center-x">X</label>
+                <input type="number" id="center-x" min="0" max="100" step="0.2" value="50" />%
+                <label for="center-y">Y</label>
+                <input type="number" id="center-y" min="0" max="100" step="0.2" value="50" />%
+                <h4>Skew</h4>
+                <label for="skew-x">X</label>
+                <input type="number" id="skew-x" min="-50" max="50" step="0.2" value="0" />%
+                <label for="skew-y">Y</label>
+                <input type="number" id="skew-y" min="-50" max="50" step="0.2" value="0" />%
+                <h4>Rotate</h4>
+                <input type="number" min="-360" max="360" step="0.2" value="0" />%
+            </section>
+            <section id="product-2" class="hidden">
+                <h2>Truffle Black</h2>
+                <select name="image" data-ord="2">
+                    <option value="image-1" selected>Image 1</option>
+                    <option value="image-2">Image 2</option>
+                    <option value="image-3">Image 3</option>
+                </select>
+                <br />
+                <label for="include">Include?</label><input type="checkbox" class="include" checked>
+                <label for="font-size"></label>
+                <input type="number" id="font-size" min="0" max="5" step="0.1" value="2" />vw
+                <h4>Color</h4>
+                <input type="color" name="variation-color-from" value="#000000"> to <input type="color" name="variation-color-from" value="#000000">
+                <h4>Center Position</h4>
+                <label for="center-x">X</label>
+                <input type="number" id="center-x" min="0" max="100" step="0.2" value="50" />%
+                <label for="center-y">Y</label>
+                <input type="number" id="center-y" min="0" max="100" step="0.2" value="50" />%
+                <h4>Skew</h4>
+                <label for="skew-x">X</label>
+                <input type="number" id="skew-x" min="-50" max="50" step="0.2" value="0" />%
+                <label for="skew-y">Y</label>
+                <input type="number" id="skew-y" min="-50" max="50" step="0.2" value="0" />%
+                <h4>Rotate</h4>
+                <input type="number" min="-360" max="360" step="0.2" value="0" />%
+            </section>
+            <section id="product-3" class="hidden">
+                <h2>Beaune Gray</h2>
+                <select name="image" data-ord="3">
+                    <option value="image-1" selected>Image 1</option>
+                    <option value="image-2">Image 2</option>
+                    <option value="image-3">Image 3</option>
+                </select>
+                <br />
+                <label for="include">Include?</label><input type="checkbox" class="include" checked>
+                <label for="font-size"></label>
+                <input type="number" id="font-size" min="0" max="5" step="0.1" value="2" />vw
+                <h4>Color</h4>
+                <input type="color" name="variation-color-from" value="#000000"> to <input type="color" name="variation-color-from" value="#000000">
+                <h4>Center Position</h4>
+                <label for="center-x">X</label>
+                <input type="number" id="center-x" min="0" max="100" step="0.2" value="50" />%
+                <label for="center-y">Y</label>
+                <input type="number" id="center-y" min="0" max="100" step="0.2" value="50" />%
+                <h4>Skew</h4>
+                <label for="skew-x">X</label>
+                <input type="number" id="skew-x" min="-50" max="50" step="0.2" value="0" />%
+                <label for="skew-y">Y</label>
+                <input type="number" id="skew-y" min="-50" max="50" step="0.2" value="0" />%
+                <h4>Rotate</h4>
+                <input type="number" min="-360" max="360" step="0.2" value="0" />%
+            </section>
+            <section id="settings" class="active">
+                <h2>Global Settings</h2>
+                <label for="default-text">Default Text</label>
+                <input type="text" id="default-text" placeholder="clark griswold" name="default-text">
+                <label for="font">Font</label>
+                <select name="font" id="font">
+                    <option value="mark-pro-normal" selected>Mark Pro</option>
+                    <option value="mark-pro-bold">Mark Pro Bold</option>
+                    <option value="mark-pro-bold-italic">Mark Pro Bold Italic</option>
+                    <option value="mark-pro-italic">Mark Pro Italic</option>
+                    <option value="mark-pro-light">Mark Pro Light</option>
+                    <option value="mark-pro-light-italic">Mark Pro Light Italic</option>
+                    <option value="mark-pro-medium">Mark Pro Medium</option>
+                    <option value="mark-pro-medium-italic">Mark Pro Medium Italic</option>
+                </select>
+                <br />
+                <div id="radio">
+                    <label for="allow-custom">Allow Custom</label>
+                    <input type="radio" id="allow-custom" name="text-force" value="none" checked>
+                    <label for="force-lowercase">force lowercase</label>
+                    <input type="radio" id="force-lowercase" name="text-force" value="lowercase">
+                    <label for="force-uppercase">FORCE UPPERCASE</label>
+                    <input type="radio" id="force-uppercase" name="text-force" value="uppercase">
+                </div>
+            </section>
+            <section id="export" class="hidden">
+                <h2>Export Engraver</h2>
+                <label for="minify" class="switch">Minify?</label>
+                <input type="checkbox" id="minify">
+                <div id='download-button'>Download Files</div>
+            </section>
+            <section id="export" class="hidden"></section>
+        </main>
+    </div>
+</body>
+
+</html>

@@ -23,8 +23,10 @@ class Text {
 
     }
 
-    renderToDom() {
-
+    renderToDom(options) {
+        chrome.tabs.query({active: true, currentWindow: true}, tabs => {
+            chrome.tabs.sendMessage(tabs[0].id, Object.assign({}, options, {id: `text-${this.variationId}-${this.ord}`}));
+        });
     }
 
     recalulateAndMove() {

@@ -108,3 +108,7 @@ label {
 #x, #y {
     width: 50px;
 }
+
+#radio {
+    display: inline-grid;
+}

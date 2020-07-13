@@ -3,13 +3,25 @@
     "name": "Product Engraver",
     "version": "0.1",
     "browser_action": {
-        "default_popup": "popup/index.html"
+        "default_popup": "popup.html"
     },
     "permissions": [
         "activeTab",
+        "tabs",
         "declarativeContent",
         "storage",
         "debugger"
+    ],
+    "web_accessible_resources": [
+        "styles/contentscript.css",
+        "fonts/MarkPro.woff",
+        "fonts/MarkPro-Bold.woff",
+        "fonts/MarkPro-BoldItalic.woff",
+        "fonts/MarkPro-Italic.woff",
+        "fonts/MarkPro-Light.woff",
+        "fonts/MarkPro-LightItalic.woff",
+        "fonts/MarkPro-Medium.woff",
+        "fonts/MarkPro-MediumItalic.woff"
     ],
     "content_scripts": [
         {
@@ -23,6 +35,9 @@
             ],
             "js": [
                 "content.js"
+            ],
+            "css": [
+                "content.css"
             ]
         }
     ]

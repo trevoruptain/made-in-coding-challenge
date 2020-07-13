@@ -1,0 +1,43 @@
+@font-face {
+    font-family: "mark-pro-normal";
+    src: url("chrome-extension://__MSG_@@extension_id__/fonts/MarkPro.woff"); 
+}
+
+@font-face {
+    font-family: "mark-pro-bold";
+    src: url("chrome-extension://__MSG_@@extension_id__/fonts/MarkPro-Bold.woff"); 
+}
+
+@font-face {
+    font-family: "mark-pro-bold-italic";
+    src: url("chrome-extension://__MSG_@@extension_id__/fonts/MarkPro-BoldItalic.woff"); 
+}
+
+@font-face {
+    font-family: "mark-pro-italic";
+    src: url("chrome-extension://__MSG_@@extension_id__/fonts/MarkPro-Italic.woff"); 
+}
+
+@font-face {
+    font-family: "mark-pro-light";
+    src: url("chrome-extension://__MSG_@@extension_id__/fonts/MarkPro-Light.woff"); 
+}
+
+@font-face {
+    font-family: "mark-pro-light-italic";
+    src: url("chrome-extension://__MSG_@@extension_id__/fonts/MarkPro-LightItalic.woff"); 
+}
+
+@font-face {
+    font-family: "mark-pro-medium";
+    src: url("chrome-extension://__MSG_@@extension_id__/fonts/MarkPro-Medium.woff"); 
+}
+
+@font-face {
+    font-family: "mark-pro-medium-italic";
+    src: url("chrome-extension://__MSG_@@extension_id__/fonts/MarkPro-MediumItalic.woff"); 
+}
+
+.editable-text {
+    position: relative;
+}
