@@ -1,3 +1,4 @@
 # Product Engraver
 
-A Chrome Extension to generate product image engravings
+This repo contains a Chrome Extension which automates the process of generating product engravings.
+
