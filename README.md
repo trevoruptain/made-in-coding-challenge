@@ -2,4 +2,4 @@
 
 This repo contains a Chrome Extension which automates the process of generating product engravings.
 
-![engraver screenshot](./images/Screen Shot 2020-07-13 at 8.13.06 AM.png)
+![engraver screenshot](https://github.com/trevoruptain/made-in-coding-challenge/blob/master/images/Screen%20Shot%202020-07-13%20at%208.13.06%20AM.png)
