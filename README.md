@@ -21,5 +21,6 @@ Designers can adjust font, default text, and placement settings then use them to
 ## Roadmap
 
 * Migrate from Chrome extension to Shopify app
+* Transpile with Babel for reverse-compatible JavaScript
 * Build out options so the app works for all products
 * Refactor some messy code
