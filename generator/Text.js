@@ -1,7 +1,7 @@
 class Text {
-    constructor(variationId, ord) {
-        this.variationId = variationId;
-        this.ord = ord;
+    constructor(variationOrd, imageOrd) {
+        this.variationOrd = variationOrd;
+        this.imageOrd = imageOrd;
         this.engraving = 'clark griswold';
 
         this.styles = {
@@ -15,21 +15,9 @@ class Text {
         };
     }
 
-    findCenter(parentHeight, parentWidth) {
-
-    }
-
-    generateStyles() {
-
-    }
-
-    renderToDom(options) {
+    renderToDom(payload) {
         chrome.tabs.query({active: true, currentWindow: true}, tabs => {
-            chrome.tabs.sendMessage(tabs[0].id, Object.assign({}, options, {id: `text-${this.variationId}-${this.ord}`}));
+            chrome.tabs.sendMessage(tabs[0].id, Object.assign({}, payload, {id: `text-${this.variationOrd}-${this.imageOrd}`}));
         });
-    }
-
-    recalulateAndMove() {
-
     }
 }

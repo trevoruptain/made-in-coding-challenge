@@ -32,7 +32,7 @@ const generateDefaults = global => {
         global.variations.push(variation);
 
         for (let i = 0; i < options.count; i++) {
-            const text = new Text(variation.id, i);
+            const text = new Text(id, i + 1);
             variation.children.push(text);
         }
     }

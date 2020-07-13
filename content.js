@@ -67,11 +67,27 @@ const setup = global => {
 };
 
 // Update default text
-const updateText = newText => {
+const updateText = payload => {
     const textNodes = document.getElementsByClassName("editable-text");
 
     for (let i = 0; i < textNodes.length; i++) {
-        textNodes[i].innerText = newText;
+        const node = textNodes[i];
+        node.innerText = payload.newText;
+        const offset = payload.offsets[i];
+
+        const optionsHash = {
+            productOrd: node.id.slice(5, 6),
+            imageOrd: node.id.slice(7, 8),
+            key: 'left',
+            multiplier: parseInt(offset.x) / 100
+        };
+
+        centerText(optionsHash);
+
+        optionsHash.key = 'top';
+        optionsHash.multiplier = parseInt(offset.y) / 100;
+
+        centerText(optionsHash);
     }
 };
 
@@ -116,15 +132,16 @@ const applyStyle = ({productOrd, imageOrd, key, val}) => {
 const centerText = ({productOrd, imageOrd, key, multiplier}) => {
     const id = `text-${productOrd}-${imageOrd}`;
     const target = document.getElementById(id);
-
     const image = document.getElementsByClassName('js-variant-slider-img')[0];
+
+    const rect = target.getBoundingClientRect();
 
     let val;
 
     if (key === "left") {
-        val = image.width * multiplier - target.offsetWidth * multiplier;
+        val = (image.width - rect.width) * multiplier;
     } else {
-        val = -(image.height * multiplier + target.offsetHeight * multiplier);
+        val = -(rect.height / 2) - ((image.height - rect.height) * multiplier);
     }
 
     applyStyle({productOrd, imageOrd, key, val: `${val}px`});
